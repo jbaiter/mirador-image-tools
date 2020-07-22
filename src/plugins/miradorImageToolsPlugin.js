@@ -2,6 +2,7 @@ import * as actions from 'mirador/dist/es/src/state/actions';
 import { getWindowConfig, getViewer } from 'mirador/dist/es/src/state/selectors';
 import MiradorImageTools from './MiradorImageTools';
 import MiradorImageToolsMenuItem from './MiradorImageToolsMenuItem';
+import translations from '../translations';
 
 export default [
   {
@@ -16,6 +17,9 @@ export default [
       viewConfig: getViewer(state, { windowId }) || {},
     }),
     mode: 'add',
+    config: {
+      translations,
+    },
     component: MiradorImageTools,
   },
   {

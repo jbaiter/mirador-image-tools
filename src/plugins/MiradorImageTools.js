@@ -112,6 +112,7 @@ class MiradorImageTools extends Component {
         grayscale = 0,
         invert = 0,
       },
+      t,
     } = this.props;
 
     if (!viewer || !enabled) return null;
@@ -135,17 +136,17 @@ class MiradorImageTools extends Component {
         }}
         >
           <ImageRotation
-            label="Rotate right"
+            label={t('rotateRight')}
             onClick={() => this.toggleRotate(90)}
             variant="right"
           />
           <ImageRotation
-            label="Rotate left"
+            label={t('rotateLeft')}
             onClick={() => this.toggleRotate(-90)}
             variant="left"
           />
           <ImageFlip
-            label="Flip"
+            label={t('flip')}
             onClick={this.toggleFlip}
             flipped={flip}
           />
@@ -160,7 +161,7 @@ class MiradorImageTools extends Component {
         >
           <ImageTool
             type="brightness"
-            label="Brightness"
+            label={t('brightness')}
             max={200}
             windowId={windowId}
             value={brightness}
@@ -170,7 +171,7 @@ class MiradorImageTools extends Component {
           </ImageTool>
           <ImageTool
             type="contrast"
-            label="Contrast"
+            label={t('contrast')}
             max={200}
             windowId={windowId}
             value={contrast}
@@ -180,7 +181,7 @@ class MiradorImageTools extends Component {
           </ImageTool>
           <ImageTool
             type="saturate"
-            label="Saturation"
+            label={t('saturation')}
             max={200}
             windowId={windowId}
             value={saturate}
@@ -191,7 +192,7 @@ class MiradorImageTools extends Component {
           <ImageTool
             type="grayscale"
             variant="toggle"
-            label="Greyscale"
+            label={t('greyscale')}
             windowId={windowId}
             value={grayscale}
             onChange={this.handleChange('grayscale')}
@@ -201,7 +202,7 @@ class MiradorImageTools extends Component {
           <ImageTool
             type="invert"
             variant="toggle"
-            label="Invert Colors"
+            label={t('invert')}
             windowId={windowId}
             value={invert}
             onChange={this.handleChange('invert')}
@@ -218,14 +219,14 @@ class MiradorImageTools extends Component {
         }}
         >
           <MiradorMenuButton
-            aria-label="Revert image"
+            aria-label={t('revert')}
             onClick={this.handleReset}
           >
             <ReplaySharpIcon />
           </MiradorMenuButton>
         </div>
         <MiradorMenuButton
-          aria-label={open ? 'Collapse image tools' : 'Expand image tools'}
+          aria-label={t('collapse', { context: open ? 'open' : 'close' })}
           onClick={this.toggleState}
         >
           { open ? <CloseSharpIcon /> : <TuneSharpIcon /> }
@@ -238,6 +239,7 @@ class MiradorImageTools extends Component {
 MiradorImageTools.propTypes = {
   enabled: PropTypes.bool,
   open: PropTypes.bool,
+  t: PropTypes.func.isRequired,
   updateViewport: PropTypes.func.isRequired,
   updateWindow: PropTypes.func.isRequired,
   viewer: PropTypes.object, // eslint-disable-line react/forbid-prop-types
